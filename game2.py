@@ -19,7 +19,7 @@ GAME_TIME = 30  # Game time in seconds
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
+RED = (150, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
@@ -28,7 +28,7 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Mr. Swanson's Game")
 
 # Load and play background music
-pygame.mixer.music.load('/Users/dswanson/PycharmProjects/Names/The-Builder(chosic.com).mp3')  # Replace with your audio file
+pygame.mixer.music.load('/Users/dswanson/PycharmProjects/Names/Run-Amok(chosic.com).mp3')  # Replace with your audio file
 pygame.mixer.music.play(-1)  # Play the music in a loop
 
 # Player class
@@ -38,8 +38,10 @@ class Player:
         self.y = y
         self.width = INITIAL_PLAYER_WIDTH
         self.height = INITIAL_PLAYER_HEIGHT
-        self.color = BLUE
+        self.image = pygame.image.load('/Users/dswanson/PycharmProjects/Names/Swanson CIrcle.png')  # Replace with your player image path
+        self.image = pygame.transform.scale(self.image, (self.width, self.height))
         self.score = 0
+        self.color = BLUE
 
     def move(self):
         keys = pygame.key.get_pressed()
@@ -69,16 +71,16 @@ class Collectible:
     def __init__(self):
         self.x = random.randint(0, WINDOW_WIDTH - OBJECT_SIZE)
         self.y = random.randint(0, WINDOW_HEIGHT - OBJECT_SIZE)
-        self.color = GREEN
+        self.image = pygame.image.load('/Users/dswanson/PycharmProjects/Names/Swanson CIrcle.png')  # Replace with your collectible image path
+        self.image = pygame.transform.scale(self.image, (OBJECT_SIZE, OBJECT_SIZE))
 
     def draw(self):
-        pygame.draw.rect(screen, self.color, (self.x, self.y, OBJECT_SIZE, OBJECT_SIZE))
+        screen.blit(self.image, (self.x, self.y))
 
     def check_collision(self, player):
         player_rect = pygame.Rect(player.x, player.y, player.width, player.height)
         object_rect = pygame.Rect(self.x, self.y, OBJECT_SIZE, OBJECT_SIZE)
         return player_rect.colliderect(object_rect)
-
 # Create game objects
 player = Player(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
 collectible = Collectible()
