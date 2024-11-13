@@ -3,6 +3,7 @@ import random
 
 # Initialize Pygame
 pygame.init()
+pygame.mixer.init()  # Initialize the mixer
 
 # Constants
 WINDOW_WIDTH = 800
@@ -26,6 +27,9 @@ BLUE = (0, 0, 255)
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Mr. Swanson's Game")
 
+# Load and play background music
+pygame.mixer.music.load('/Users/dswanson/PycharmProjects/Names/The-Builder(chosic.com).mp3')  # Replace with your audio file
+pygame.mixer.music.play(-1)  # Play the music in a loop
 
 # Player class
 class Player:
@@ -60,7 +64,6 @@ class Player:
     def draw(self):
         pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
 
-
 # Collectible class
 class Collectible:
     def __init__(self):
@@ -75,7 +78,6 @@ class Collectible:
         player_rect = pygame.Rect(player.x, player.y, player.width, player.height)
         object_rect = pygame.Rect(self.x, self.y, OBJECT_SIZE, OBJECT_SIZE)
         return player_rect.colliderect(object_rect)
-
 
 # Create game objects
 player = Player(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
