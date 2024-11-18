@@ -1,19 +1,23 @@
 import pygame
 from pygame.locals import *
 
+#sizes and colors, etc.
 size = 640, 320
 width, height = size
 GREEN = (150, 255, 150)
 RED = (255, 0, 0)
 
+#initialize pygame
 pygame.init()
 screen = pygame.display.set_mode(size)
 running = True
 
+#ball
 ball = pygame.image.load("ball.gif")
 rect = ball.get_rect()
 speed = [2, 2]
 
+#main loop
 while running:
     for event in pygame.event.get():
         if event.type == QUIT: 
@@ -30,4 +34,5 @@ while running:
     screen.blit(ball, rect)
     pygame.display.update()
 
+#quit the game
 pygame.quit()
