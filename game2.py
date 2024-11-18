@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 # Initialize Pygame
 pygame.init()
 pygame.mixer.init()  # Initialize the mixer
@@ -19,7 +20,7 @@ GAME_TIME = 30  # Game time in seconds
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (150, 0, 0)
+RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
@@ -28,7 +29,7 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Mr. Swanson's Game")
 
 # Load and play background music
-pygame.mixer.music.load('/Users/dswanson/PycharmProjects/Names/Run-Amok(chosic.com).mp3')  # Replace with your audio file
+pygame.mixer.music.load('/Users/dswanson/PycharmProjects/Names/The-Builder(chosic.com).mp3')  # Replace with your audio file
 pygame.mixer.music.play(-1)  # Play the music in a loop
 
 # Player class
