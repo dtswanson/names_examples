@@ -16,15 +16,12 @@ student_names = [
     ['Mr. Collier', 12, 84]
 ]
 
-
 # Encrypting and decrypting functions
 def encrypt_data(data):
     return cipher_suite.encrypt(data.encode()).decode()
 
-
 def decrypt_data(data):
     return cipher_suite.decrypt(data.encode()).decode()
-
 
 # Setup encrypted databases
 def setup_databases():
@@ -57,17 +54,17 @@ def setup_databases():
     conn_scores.commit()
     conn_scores.close()
 
-
 # Function to validate login with encrypted database
 def validate(username, password):
     conn = sqlite3.connect("encrypted_login.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username=? AND password=?",
-                   (encrypt_data(username), encrypt_data(password)))
+    cursor.execute("SELECT username, password FROM users WHERE username=?", (encrypt_data(username),))
     result = cursor.fetchone()
     conn.close()
-    return result is not None
-
+    if result:
+        stored_username, stored_password = result
+        return decrypt_data(stored_username) == username and decrypt_data(stored_password) == password
+    return False
 
 # Function to register a new user in encrypted login database
 def signup(username, password):
@@ -77,7 +74,6 @@ def signup(username, password):
                    (encrypt_data(username), encrypt_data(password)))
     conn.commit()
     conn.close()
-
 
 # GUI classes (keeping original code structure with modifications for encrypted database)
 
@@ -108,12 +104,13 @@ class LoginPage(tk.Tk):
         password = self.entry_pw.get()
         if validate(username, password):
             tk.messagebox.showinfo("Login Successful", f"Welcome {username}")
+            self.destroy()
+            StudentScoresPage().mainloop()
         else:
             tk.messagebox.showerror("Login Failed", "Incorrect Username or Password")
 
     def get_signup(self):
         SignupPage()
-
 
 class SignupPage(tk.Toplevel):
     def __init__(self):
@@ -140,7 +137,6 @@ class SignupPage(tk.Toplevel):
         signup(username, password)
         tk.messagebox.showinfo("Account Created", "Account successfully created.")
         self.destroy()
-
 
 class StudentScoresPage(tk.Tk):
     def __init__(self):
@@ -173,10 +169,8 @@ class StudentScoresPage(tk.Tk):
         for name, grade, score in encrypted_data:
             self.tree.insert("", "end", values=(decrypt_data(name), decrypt_data(grade), decrypt_data(score)))
 
-
 # Setup databases and launch the main pages
 setup_databases()
 
-# Launch the login and student scores pages
+# Launch the login page
 LoginPage().mainloop()
-StudentScoresPage().mainloop()
