@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 
-# Where we will build our GUI.  This one is for gathering a name.
+# Where we will build our GUI.  This one is for gathering a name. Maybe Supriti? Maybe not.
 layout = [
     [sg.Text("What's your name?")],
     [sg.InputText(key='-INPUT-')],
