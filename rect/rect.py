@@ -15,6 +15,7 @@ start = (0, 0)
 size = (0, 0)
 drawing = False
 rect_list = []
+
 # Main loop
 running = True
 
