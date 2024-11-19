@@ -11,17 +11,17 @@ layout = [
 # Makes the window,
 window = sg.Window('Hello MIS', layout)
 
-# Event Loop to get the value entered -- like the requested name.
+# Event Loop to get the value entered --  the requested name in this file.
 while True:
     event, values = window.read()
 
-    # this tells the program to break -- stop -- when the window is closed or cancel is hit.
+    # this tells the program to break -- stop -- when the window is closed or cancel is hit. Breaks the loop.
     if event == sg.WIN_CLOSED or event == 'Cancel':
         break
 
-    # This takes the input and displays it back out.
+    # This takes the input and displays it back out in the window.
     if event == 'Ok':
-        greeting = f'Hello {values["-INPUT-"]}, I hope you are having a good first day after Fall break!'
+        greeting = f'Hello {values["-INPUT-"]}, I hope you are having a good Tuesday.'
         window['-OUTPUT-'].update(greeting)
 
 window.close()

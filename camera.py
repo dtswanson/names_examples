@@ -2,7 +2,7 @@ import cv2
 from PIL import Image
 
 # ASCII characters used for mapping grayscale values
-ASCII_CHARS = "@%#*+=-:. "
+ASCII_CHARS = "@%#*+$!()=-:. "
 
 
 # Resize image based on desired width
