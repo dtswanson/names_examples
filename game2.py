@@ -72,7 +72,7 @@ class Collectible:
     def __init__(self):
         self.x = random.randint(0, WINDOW_WIDTH - OBJECT_SIZE)
         self.y = random.randint(0, WINDOW_HEIGHT - OBJECT_SIZE)
-        self.image = pygame.image.load('/Users/dswanson/PycharmProjects/Names/Swanson CIrcle.png')  # Replace with your collectible image path
+        self.image = pygame.image.load('/Users/dswanson/PycharmProjects/Names/Swanson CIrcle.png')  # Replace with your image path (right click on the image in your directory, and click on "Copy Path")
         self.image = pygame.transform.scale(self.image, (OBJECT_SIZE, OBJECT_SIZE))
 
     def draw(self):
