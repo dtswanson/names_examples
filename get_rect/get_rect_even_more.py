@@ -40,6 +40,10 @@ while running:
             end = event.pos
             size = end[0] - start[0], end[1] - start[1]
 
+        elif event.type == KEYDOWN:
+            if event.key == K_d and rect_list:
+                rect_list.pop()
+
     # Draw the screen
     screen.fill(GRAY)
     for rect in rect_list:
@@ -48,5 +52,4 @@ while running:
     pygame.display.update()
 
 # Quit Pygame
-
 pygame.quit()
