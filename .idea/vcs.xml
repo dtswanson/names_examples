@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/PySimpleGui/all" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/unit_converter" vcs="Git" />
   </component>
 </project>
