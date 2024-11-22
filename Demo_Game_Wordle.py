@@ -2,35 +2,7 @@ import PySimpleGUI as sg
 import copy
 import random
 
-"""
-    Wordle GUI Demo
-
-    Enter characters for each position
-    Press enter or click enter to submit a row
-
-    This is a prototype GUI of the front-end for WORDL
-    It currently:
-        * Takes input
-            * Makes sure only characters
-            * Automatically converts to upper case
-            * Handles backspace
-            * Checks for Enter key
-        * Compares against a word (the constant "answer")
-        * Color codes the submitted guess
-
-    To complete an application, you'll need to:
-        * Supply a word to guess from list of words
-        * Check if user's submission is a word (I think this is how WORDLE works)
-
-    Copyright 2022-2023 PySimpleSoft, Inc. and/or its licensors. All rights reserved.
-    
-    Redistribution, modification, or any other use of PySimpleGUI or any portion thereof is subject to the terms of the PySimpleGUI License Agreement available at https://eula.pysimplegui.com.
-    
-    You may not redistribute, modify or otherwise use PySimpleGUI or its contents except pursuant to the PySimpleGUI License Agreement.
-"""
-
-# Insert code to generate a word here
-
+#words and RANDOM WORD()
 words_list = ['OWENS', 'COLIN', 'SUPRI', 'HERMA', 'OMAIR', 'OSKAR', 'FRITZ', 'GAUTH', 'DIEGO', 'SWANS']
 
 def get_random_word():
@@ -38,6 +10,7 @@ def get_random_word():
 
 answer = get_random_word()
 
+#GUI
 def TextChar(value, key):
     return sg.Input(value, key=key, font='Courier 22', size=(1,1),  disabled_readonly_background_color='gray', border_width=1,  p=1, enable_events=True, disabled=True)
 
@@ -96,7 +69,7 @@ def main():
                     window[(current_key[0], current_key[1]-1)].set_focus()
                     window[(current_key[0], current_key[1]-1)].update('')
 
-
+#WIN/LOSE
     if correct:
         sg.popup('You win!')
     else:
