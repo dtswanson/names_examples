@@ -1,6 +1,6 @@
 from rect import *
 
-n = 50
+n = 100
 rects = random_rects(n)
 
 while running:
