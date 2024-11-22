@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import copy
+import random
 
 """
     Wordle GUI Demo
@@ -29,8 +30,13 @@ import copy
 """
 
 # Insert code to generate a word here
-answer = 'WORDS'
 
+words_list = ['OWENS', 'COLIN', 'SUPRI', 'HERMA', 'OMAIR', 'OSKAR', 'FRITZ', 'GAUTH', 'DIEGO', 'SWANS']
+
+def get_random_word():
+    return random.choice(words_list)
+
+answer = get_random_word()
 
 def TextChar(value, key):
     return sg.Input(value, key=key, font='Courier 22', size=(1,1),  disabled_readonly_background_color='gray', border_width=1,  p=1, enable_events=True, disabled=True)
