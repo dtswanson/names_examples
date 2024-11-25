@@ -1,22 +1,25 @@
-"""Move an image with the mouse."""
 
 import pygame
 from pygame.locals import *
 
+#Colors (R, G, B)
 RED = (255, 0, 0)
 GRAY = (150, 150, 150)
 
+# Initialize Pygame
 pygame.init()
 w, h = 640, 240
 screen = pygame.display.set_mode((w, h))
 running = True
 
+# Load the image
 img = pygame.image.load('bird.png')
 img.convert()
 rect = img.get_rect()
 rect.center = w // 2, h // 2
 moving = False
 
+# Main loop
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
