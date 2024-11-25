@@ -1,5 +1,3 @@
-"""Rotate, scale and flip an image."""
-
 import pygame
 import math, sys, os
 from pygame.locals import *
@@ -15,7 +13,7 @@ running = True
 
 module = sys.modules['__main__']
 path, name = os.path.split(module.__file__)
-path = os.path.join(path, 'bird.png')
+path = os.path.join(path, 'MIS_Logo.png')
 
 img0 = pygame.image.load(path)
 img0.convert()
