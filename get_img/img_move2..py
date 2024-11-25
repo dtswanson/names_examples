@@ -1,92 +1,97 @@
+"""Rotate, scale and flip an image."""
+
 import pygame
+import math, sys, os
 from pygame.locals import *
 
-# Colors (R, G, B)
 RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 GRAY = (150, 150, 150)
 
-# Initialize Pygame
 pygame.init()
 w, h = 640, 240
 screen = pygame.display.set_mode((w, h))
 running = True
 
-# Load the image
-original_img = pygame.image.load('MIS_Logo.png')
-original_img = original_img.convert_alpha()  # Use convert_alpha to preserve transparency
-original_rect = original_img.get_rect()
-original_rect.center = w // 2, h // 2
+module = sys.modules['__main__']
+path, name = os.path.split(module.__file__)
+path = os.path.join(path, 'bird.png')
 
-# Copy the original image and rect
-img = original_img.copy()
-rect = original_rect.copy()
-moving = False
-resizing = False
-resize_dir = None
+img0 = pygame.image.load(path)
+img0.convert()
 
-# Main loop
+# draw a green border around img0
+rect0 = img0.get_rect()
+pygame.draw.rect(img0, GREEN, rect0, 1)
+
+center = w // 2, h // 2
+img = img0
+rect = img.get_rect()
+rect.center = center
+
+angle = 0
+scale = 1
+
+mouse = pygame.mouse.get_pos()
+
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
 
-        elif event.type == MOUSEBUTTONDOWN:
-            if rect.collidepoint(event.pos):
-                if abs(event.pos[0] - rect.left) < 10:
-                    resizing = True
-                    resize_dir = 'left'
-                elif abs(event.pos[0] - rect.right) < 10:
-                    resizing = True
-                    resize_dir = 'right'
-                elif abs(event.pos[1] - rect.top) < 10:
-                    resizing = True
-                    resize_dir = 'top'
-                elif abs(event.pos[1] - rect.bottom) < 10:
-                    resizing = True
-                    resize_dir = 'bottom'
+        if event.type == KEYDOWN:
+            if event.key == K_r:
+                if event.mod & KMOD_SHIFT:
+                    angle -= 10
                 else:
-                    moving = True
+                    angle += 10
+                img = pygame.transform.rotozoom(img0, angle, scale)
 
-        elif event.type == MOUSEBUTTONUP:
-            moving = False
-            resizing = False
-            resize_dir = None
-
-
-# Add resizing functionality
-        elif event.type == MOUSEMOTION:
-            if moving:
-                rect.move_ip(event.rel)
-            elif resizing:
-                if resize_dir == 'left':
-                    rect.width = max(1, rect.width - event.rel[0])
-                    rect.left += event.rel[0]
-                elif resize_dir == 'right':
-                    rect.width = max(1, rect.width + event.rel[0])
-                elif resize_dir == 'top':
-                    rect.height = max(1, rect.height - event.rel[1])
-                    rect.top += event.rel[1]
-                elif resize_dir == 'bottom':
-                    rect.height = max(1, rect.height + event.rel[1])
-                img = pygame.transform.smoothscale(img, (rect.width, rect.height))
-# Add keyboard control
-        elif event.type == KEYDOWN:
-            if event.key == K_w:
-                rect.move_ip(0, -5)
-            elif event.key == K_a:
-                rect.move_ip(-5, 0)
             elif event.key == K_s:
-                rect.move_ip(0, 5)
-            elif event.key == K_d:
-                rect.move_ip(5, 0)
-    # Reset the image and rect to original state
-            elif event.key == K_r:
-                img = original_img.copy()
-                rect = original_rect.copy()
+                if event.mod & KMOD_SHIFT:
+                    scale /= 1.1
+                else:
+                    scale *= 1.1
+                img = pygame.transform.rotozoom(img0, angle, scale)
+
+            elif event.key == K_o:
+                img = img0
+                angle = 0
+                scale = 1
+
+            elif event.key == K_h:
+                img = pygame.transform.flip(img, True, False)
+
+            elif event.key == K_v:
+                img = pygame.transform.flip(img, False, True)
+
+            elif event.key == K_l:
+                img = pygame.transform.laplacian(img)
+
+            elif event.key == K_2:
+                img = pygame.transform.scale2x(img)
+
+            rect = img.get_rect()
+            rect.center = center
+
+        elif event.type == MOUSEMOTION:
+            mouse = event.pos
+            x = mouse[0] - center[0]
+            y = mouse[1] - center[1]
+            d = math.sqrt(x ** 2 + y ** 2)
+
+            angle = math.degrees(-math.atan2(y, x))
+            scale = abs(5 * d / w)
+            img = pygame.transform.rotozoom(img0, angle, scale)
+            rect = img.get_rect()
+            rect.center = center
 
     screen.fill(GRAY)
     screen.blit(img, rect)
     pygame.draw.rect(screen, RED, rect, 1)
+    pygame.draw.line(screen, GREEN, center, mouse, 1)
+    pygame.draw.circle(screen, RED, center, 6, 1)
+    pygame.draw.circle(screen, RED, mouse, 6, 1)
     pygame.display.update()
 
 pygame.quit()
