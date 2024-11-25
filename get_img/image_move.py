@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((w, h))
 running = True
 
 # Load the image
-img = pygame.image.load('bird.png')
+img = pygame.image.load('MIS_Logo.png')
 img.convert()
 rect = img.get_rect()
 rect.center = w // 2, h // 2
