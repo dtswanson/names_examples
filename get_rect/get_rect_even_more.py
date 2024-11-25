@@ -43,6 +43,11 @@ while running:
         elif event.type == KEYDOWN:
             if event.key == K_d and rect_list:
                 rect_list.pop()
+            elif event.key == K_s and rect_list:
+                last_rect = rect_list[-1]
+                square_size = min(last_rect.width, last_rect.height)
+                last_rect.width = square_size
+                last_rect.height = square_size
 
     # Draw the screen
     screen.fill(GRAY)
