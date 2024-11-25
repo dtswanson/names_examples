@@ -5,7 +5,7 @@ import pygubu
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "demo1.ui"
 
-
+# Main application
 class Demo1App:
     def __init__(self, master=None):
         self.builder = builder = pygubu.Builder()
@@ -14,6 +14,7 @@ class Demo1App:
         # Main widget
         self.mainwindow = builder.get_object("toplevel1", master)
 
+# Variables
         self.var_enable_tab3 = None
         self.var_show_hidden_tab = None
         builder.import_variables(
@@ -23,14 +24,14 @@ class Demo1App:
         builder.connect_callbacks(self)
 
         #
-        # Set second tab the active tab at start
+    # Set second tab the active tab at start
         #
         self.notebook = builder.get_object("notebook1")
         self.notebook.select(1)
-
+# Run the application
     def run(self):
         self.mainwindow.mainloop()
-
+# Callbacks
     def on_option_changed(self, widget_id):
         if widget_id == "cb_enable_tab3":
             enable_tab = self.var_enable_tab3.get()
@@ -41,7 +42,7 @@ class Demo1App:
             new_state = "normal" if hide_tab else "hidden"
             self.notebook.tab(3, state=new_state)
 
-
+# Main
 if __name__ == "__main__":
     app = Demo1App()
     app.run()
