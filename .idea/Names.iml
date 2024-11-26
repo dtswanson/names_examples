@@ -7,5 +7,6 @@
     <orderEntry type="jdk" jdkName="Python 3.12 (pythonProject)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="2d_car" />
+    <orderEntry type="module" module-name="flask_simple" />
   </component>
 </module>

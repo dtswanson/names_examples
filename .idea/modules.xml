@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/2d_car/.idea/2d_car.iml" filepath="$PROJECT_DIR$/2d_car/.idea/2d_car.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Names.iml" filepath="$PROJECT_DIR$/.idea/Names.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flask_simple/.idea/flask_simple.iml" filepath="$PROJECT_DIR$/flask_simple/.idea/flask_simple.iml" />
     </modules>
   </component>
 </project>

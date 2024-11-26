@@ -6,6 +6,8 @@ from cryptography.fernet import Fernet
 
 # Generate and store the encryption key (run only once, then save the key)
 key = Fernet.generate_key()
+cipher_suite = Fernet(key)# Generate and store the encryption key (run only once, then save the key)
+key = Fernet.generate_key()
 cipher_suite = Fernet(key)
 
 # Original student data (now used to populate the encrypted database)

@@ -4,6 +4,8 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/2d_car" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/PySimpleGui/all" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Tkinter-Designer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flask_simple" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/unit_converter" vcs="Git" />
   </component>
 </project>
