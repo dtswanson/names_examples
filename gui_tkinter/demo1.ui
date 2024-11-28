@@ -37,17 +37,6 @@
                     </layout>
                   </object>
                 </child>
-                <child>
-                  <object class="ttk.Checkbutton" id="cb_show_hidden_tab" named="True">
-                    <property name="command" type="command" cbtype="with_wid">on_option_changed</property>
-                    <property name="text" translatable="yes">Show hidden tab</property>
-                    <property name="variable">boolean:var_show_hidden_tab</property>
-                    <layout manager="pack">
-                      <property name="fill">x</property>
-                      <property name="side">top</property>
-                    </layout>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
@@ -82,10 +71,31 @@
             <child>
               <object class="ttk.Frame" id="frame3">
                 <property name="height">200</property>
+                <property name="padding">10</property>
                 <property name="width">200</property>
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
+                <child>
+                  <object class="ttk.Label" id="label3">
+                    <property name="text" translatable="yes">A Hidden tab</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Checkbutton" id="cb_show_hidden_tab" named="True">
+                    <property name="command" type="command" cbtype="with_wid">on_option_changed</property>
+                    <property name="text" translatable="yes">Show hidden tab</property>
+                    <property name="variable">boolean:var_show_hidden_tab</property>
+                    <layout manager="pack">
+                      <property name="fill">x</property>
+                      <property name="side">top</property>
+                    </layout>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -101,15 +111,6 @@
                 <layout manager="pack">
                   <property name="side">top</property>
                 </layout>
-                <child>
-                  <object class="ttk.Label" id="label3">
-                    <property name="text" translatable="yes">A Hidden tab</property>
-                    <layout manager="pack">
-                      <property name="expand">true</property>
-                      <property name="side">top</property>
-                    </layout>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
