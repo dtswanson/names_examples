@@ -39,7 +39,7 @@ while running:
     if keys[K_DOWN]:
         circle_pos[1] += 5
 
-    # Check for collision
+    # Checking for collision
     if current_shape == 'circle':
         distance = ((circle_pos[0] - shape_pos[0]) ** 2 + (circle_pos[1] - shape_pos[1]) ** 2) ** 0.5
         if distance < circle_radius + shape_size / 2:
